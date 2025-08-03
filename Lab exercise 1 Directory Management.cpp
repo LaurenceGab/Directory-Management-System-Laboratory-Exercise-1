@@ -161,5 +161,29 @@ void changeDirectory() {
     }
 }
 
+int main() {
+    while (true) {
+        mainMenu();
+        int choice = getValidInput();
+
+        switch (choice) {
+        case 1:
+            listFiles();
+            break;
+        case 2:
+            createDirectory();
+            break;
+        case 3:
+            changeDirectory();
+            break;
+        case 4:
+            cout << "Exiting program. Goodbye!\n";
+            return 0;
+        default:
+            cout << "Invalid choice. Please select a valid option.\n";
+        }
+    }
+    return 0;
+}
 
 
