@@ -110,6 +110,56 @@ void createDirectory() {
     }
 }
 
+void changeDirectory() {
+    cout << "\nChange Directory Menu:\n";
+    cout << "[1] Move to Parent Directory\n";
+    cout << "[2] Move to Root Directory\n";
+    cout << "[3] Enter Custom Path\n";
+    cout << "Choose an option: ";
+
+    int choice = getValidInput();
+
+    try {
+        switch (choice) {
+        case 1: {
+            fs::path current = fs::current_path();
+            fs::path parent = current.parent_path();
+            if (parent != current) {
+                fs::current_path(parent);
+                cout << "Changed to: " << fs::current_path().string() << endl;
+            }
+            else {
+                cout << "Cannot move up: Already at root directory!\n";
+            }
+            break;
+        }
+        case 2: {
+            fs::path root = fs::current_path().root_path();
+            fs::current_path(root);
+            cout << "Changed to root: " << fs::current_path().string() << endl;
+            break;
+        }
+        case 3: {
+            string path;
+            cout << "Enter path: C:\\Users\\Desktop): ";
+            getline(cin, path);
+            if (fs::exists(path) && fs::is_directory(path)) {
+                fs::current_path(path);
+                cout << " Current directory changed to: " << fs::current_path().string() << endl;
+            }
+            else {
+                cout << "Error: Path '" << path << "' is invalid or not a directory!\n";
+            }
+            break;
+        }
+        default:
+            cout << "Invalid option!\n";
+        }
+    }
+    catch (const fs::filesystem_error& e) {
+        cout << "Error: " << e.what() << endl;
+    }
+}
 
 
 
