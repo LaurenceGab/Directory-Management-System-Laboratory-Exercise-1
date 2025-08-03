@@ -89,6 +89,27 @@ try {
     }
 }
 
+void createDirectory() {
+    string dirName;
+    cout << "\nEnter directory name: ";
+    getline(cin, dirName);
+
+    try {
+        if (fs::exists(dirName)) {
+            cout << "Error: Directory '" << dirName << "' already exists!\n";
+        }
+        else if (fs::create_directory(dirName)) {
+            cout << "Directory '" << dirName << "' created successfully.\n";
+        }
+        else {
+            cout << "Failed to create directory '" << dirName << "'!\n";
+        }
+    }
+    catch (const fs::filesystem_error& e) {
+        cout << "Error: " << e.what() << endl;
+    }
+}
+
 
 
 
