@@ -27,6 +27,13 @@ int getValidInput() {
     cin.ignore();
     return input;
 }
+void listFiles(){
+    cout << "\nList Files Menu:\n";
+    cout << "[1] List All Files\n";
+    cout << "[2] List Files by Extension\n";
+    cout << "[3] List Files by Pattern\n";
+
+int choice = getValidInput();
 
 
 
